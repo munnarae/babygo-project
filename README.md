@@ -14,8 +14,8 @@
 
 ## 설치 및 실행 방법
 
-1. **yarn install**
-2. **yarn dev**
+**1. yarn install**
+**2. yarn dev**
 
 ## 주요 기능
 
@@ -26,6 +26,7 @@
 
 ## 폴더 구조
 
+```
 ├── public
 │   └── index.html         # 파비콘, 프로젝트 타이틀 관리
 ├── src
@@ -38,3 +39,4 @@
 │   ├── main.tsx           # 애플리케이션 엔트리 포인트
 │   └── index.css          # 전역 스타일 설정
 └── package.json           # 프로젝트 설정 및 스크립트
+```
