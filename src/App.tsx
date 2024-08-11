@@ -3,7 +3,7 @@ import ListPage from '../src/pages/ListPage';
 import DetailPage from '../src/pages/DetailPage';
 import Nav from '../src/components/Nav';
 import Header from '../src/components/Header';
-import CategoryBar from '../src/components/CategoryBar'; // CategoryBar 추가
+import CategoryBar from '../src/components/CategoryBar';
 
 function AppContent() {
     const location = useLocation();
