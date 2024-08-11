@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import ListPage from './page/ListPage';
-import DetailPage from './page/DetailPage';
+import ListPage from '../src/pages/ListPage';
+import DetailPage from '../src/pages/DetailPage';
 import Nav from '../src/components/Nav';
 import Header from '../src/components/Header';
 import CategoryBar from '../src/components/CategoryBar'; // CategoryBar 추가
