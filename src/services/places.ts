@@ -18,7 +18,7 @@ export const fetchPlaces = async (page: number): Promise<Place[]> => {
         });
         return response.data.data; 
     } catch (error) {
-        console.error('Error fetching places:', error);
+        console.error('장소를 가져오는 중에 오류가 발생했습니다:', error);
         throw error;
     }
 };

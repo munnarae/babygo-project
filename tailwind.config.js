@@ -7,11 +7,10 @@ module.exports = {
         function ({ addUtilities }) {
             const newUtilities = {
                 '.no-scrollbar': {
-                    /* Hide scrollbar for Chrome, Safari, Edge */
-                    '-ms-overflow-style': 'none' /* IE and Edge */,
-                    'scrollbar-width': 'none' /* Firefox */,
+                    '-ms-overflow-style': 'none',
+                    'scrollbar-width': 'none',
                     '&::-webkit-scrollbar': {
-                        display: 'none' /* Chrome, Safari, and Opera */,
+                        display: 'none',
                     },
                 },
             };
