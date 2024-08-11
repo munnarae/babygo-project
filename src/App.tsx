@@ -1,23 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import ListPage from './page/ListPage';
 import DetailPage from './page/DetailPage';
 import Nav from '../src/components/Nav';
-import Header from './components/Header';
+import Header from '../src/components/Header';
+import CategoryBar from '../src/components/CategoryBar'; // CategoryBar 추가
 
-function App() {
+function AppContent() {
+    const location = useLocation();
+
+    // DetailPage에서는 Header와 CategoryBar를 숨깁니다.
+    const hideHeaderAndCategoryBar = location.pathname.includes('/item/');
+
     return (
-        <Router>
-            <div className="min-h-screen flex flex-col items-center">
-                <div className="flex-grow w-full max-w-xl">
-                    <Header />
+        <div className="min-h-screen flex flex-col items-center">
+            <div className="w-full max-w-xl">
+                {!hideHeaderAndCategoryBar && <Header />}
+                {!hideHeaderAndCategoryBar && <CategoryBar />}
+                <div className="flex-grow overflow-y-auto">
                     <Routes>
                         <Route path="/" element={<ListPage />} />
                         <Route path="/item/:id" element={<DetailPage />} />
                     </Routes>
-                    <Nav />
                 </div>
+                <Nav />
             </div>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <Router>
+            <AppContent />
         </Router>
     );
 }
