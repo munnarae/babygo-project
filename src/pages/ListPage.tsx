@@ -34,7 +34,7 @@ const ListPage: React.FC = () => {
                         <div ref={index === places.length - 1 ? lastPlaceElementRef : null} className="w-full flex items-center p-5">
                             <img className="w-36 h-36 object-cover rounded-lg mr-4" src={item.thumbnail} alt={item.name} />
                             <div>
-                                <p className="text-gray-500">{item.name}</p>
+                                <p className="text-lg font-bold text-gray-900">{item.name}</p>
                                 <p className="text-gray-500">{item.address}</p>
                             </div>
                         </div>
