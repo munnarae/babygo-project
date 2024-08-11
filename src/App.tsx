@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ListPage from './page/ListPage';
+import DetailPage from './page/DetailPage';
 import Nav from '../src/components/Nav';
 import Header from './components/Header';
 
@@ -12,6 +13,7 @@ function App() {
                     <Header />
                     <Routes>
                         <Route path="/" element={<ListPage />} />
+                        <Route path="/item/:id" element={<DetailPage />} />
                     </Routes>
                     <Nav />
                 </div>
