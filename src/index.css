@@ -65,23 +65,21 @@ button {
     }
 }
 
-/* 웹킷 브라우저용 (Chrome, Safari, Edge 등) */
+/* 웹킷 브라우저용 (Chrome, Safari, Edge 등) 스크롤 바 숨기기 */
 ::-webkit-scrollbar {
-    width: 0px; /* 스크롤바 너비를 0으로 설정 */
-    height: 0px; /* 스크롤바 높이를 0으로 설정 */
+    width: 0px; 
+    height: 0px; 
 }
 
-/* 파이어폭스 브라우저용 */
 html {
-    scrollbar-width: none; /* 스크롤바 너비를 없음으로 설정 */
+    scrollbar-width: none; 
 }
 
-/* 스크롤바 완전 숨기기 */
 html, body, div {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 div::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none; 
 }

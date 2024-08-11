@@ -9,10 +9,10 @@ const ListPage: React.FC = () => {
                 {items.map(item => (
                     <Link key={item.id} to={`/item/${item.id}`}>
                         <div className="w-full flex items-center p-5">
-                            <img className="w-36 h-36 object-cover rounded-lg mr-4" src={item.imageUrl} alt={item.name} />
+                            <img className="w-36 h-36 object-cover rounded-lg mr-4" src={item.thumbnail} alt={item.name} />
                             <div>
-                                <p className="text-gray-500">{item.detail}</p>
-                                <p className="text-gray-500">count: {item.count}</p>
+                                <p className="text-gray-500">{item.name}</p>
+                                <p className="text-gray-500">{item.address}</p>
                             </div>
                         </div>
                     </Link>
