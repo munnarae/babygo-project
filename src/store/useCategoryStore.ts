@@ -7,7 +7,7 @@ interface PlaceStore {
     loading: boolean;
     hasMore: boolean;
     page: number;
-    selectedCategory: string | null; // 선택된 카테고리
+    selectedCategory: string | null; 
     fetchNextPage: () => Promise<void>;
     filterByCategory: (category: string | null) => void; // 카테고리 필터링 함수
 }
@@ -35,7 +35,7 @@ export const usePlaceStore = create<PlaceStore>((set, get) => ({
                 loading: false,
             }));
         } catch (error) {
-            console.error('장소 데이터 로드 실패:', error);
+            console.error('장소 불러오기 실패:', error);
             set({ loading: false });
         }
     },

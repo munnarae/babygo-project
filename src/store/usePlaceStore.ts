@@ -1,24 +1,34 @@
 import create from 'zustand';
 import { fetchPlaces, Place } from '../services/places';
 
+interface Comment {
+    id: number;
+    text: string;
+}
+
 interface PlaceStore {
     places: Place[];
-    allPlaces: Place[]; // 전체 데이터를 유지하기 위한 상태
+    allPlaces: Place[];
     loading: boolean;
     hasMore: boolean;
     page: number;
-    selectedCategory: string | null; // 선택된 카테고리
+    selectedCategory: string | null;
+    comments: Record<string, Comment[]>; // Place id를 키로 하는 댓글 관리
     fetchNextPage: () => Promise<void>;
-    filterByCategory: (category: string | null) => void; // 카테고리 필터링 함수
+    filterByCategory: (category: string | null) => void;
+    addComment: (placeId: string, text: string) => void;
+    updateComment: (placeId: string, commentId: number, newText: string) => void;
+    deleteComment: (placeId: string, commentId: number) => void;
 }
 
 export const usePlaceStore = create<PlaceStore>((set, get) => ({
     places: [],
-    allPlaces: [], // 초기 값
+    allPlaces: [],
     loading: false,
     hasMore: true,
     page: 1,
-    selectedCategory: null, // 초기에는 모든 데이터를 보여줌
+    selectedCategory: null,
+    comments: {},
 
     fetchNextPage: async () => {
         const { loading, page, hasMore } = get();
@@ -29,13 +39,13 @@ export const usePlaceStore = create<PlaceStore>((set, get) => ({
             const newPlaces = await fetchPlaces(page);
             set(state => ({
                 places: [...state.places, ...newPlaces],
-                allPlaces: [...state.allPlaces, ...newPlaces], // 전체 데이터를 유지
+                allPlaces: [...state.allPlaces, ...newPlaces],
                 page: state.page + 1,
                 hasMore: newPlaces.length > 0,
                 loading: false,
             }));
         } catch (error) {
-            console.error('장소 데이터 로드 실패:', error);
+            console.error('장소 불러오기 실패:', error);
             set({ loading: false });
         }
     },
@@ -48,5 +58,42 @@ export const usePlaceStore = create<PlaceStore>((set, get) => ({
         } else {
             set({ places: allPlaces, selectedCategory: null });
         }
+    },
+
+    addComment: (placeId: string, text: string) => {
+        set(state => {
+            const newComment: Comment = { id: Date.now(), text };
+            const updatedComments = [...(state.comments[placeId] || []), newComment];
+            return {
+                comments: {
+                    ...state.comments,
+                    [placeId]: updatedComments,
+                },
+            };
+        });
+    },
+
+    updateComment: (placeId: string, commentId: number, newText: string) => {
+        set(state => {
+            const updatedComments = state.comments[placeId].map(comment => (comment.id === commentId ? { ...comment, text: newText } : comment));
+            return {
+                comments: {
+                    ...state.comments,
+                    [placeId]: updatedComments,
+                },
+            };
+        });
+    },
+
+    deleteComment: (placeId: string, commentId: number) => {
+        set(state => {
+            const updatedComments = state.comments[placeId].filter(comment => comment.id !== commentId);
+            return {
+                comments: {
+                    ...state.comments,
+                    [placeId]: updatedComments,
+                },
+            };
+        });
     },
 }));
